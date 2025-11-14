@@ -37,14 +37,17 @@
           style="display:none;"
         ></div>
 
-        <!-- Social & forgot -->
-        <div class="social-divider">── or continue with ──</div>
-        <div class="social-buttons">
-          <button class="social-btn google">Google</button>
-          <button class="social-btn apple">Apple</button>
-          <button class="social-btn github">GitHub</button>
+        <!-- Navigation links - subtle -->
+        <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">Other authentication options:</p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="passwordless.html" style="color: var(--primary); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: var(--transition);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Passwordless</a>
+            <span style="color: var(--border);">•</span>
+            <a href="auth.html" style="color: var(--primary); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: var(--transition);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Full Auth</a>
+            <span style="color: var(--border);">•</span>
+            <a href="forgot.html" style="color: var(--primary); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: var(--transition);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Forgot Password</a>
+          </div>
         </div>
-        <a href="forgot.html" class="forgot-link">Forgot password?</a>
       </section>
 
       <!-- RIGHT VALUE PROP -->
@@ -63,7 +66,7 @@
         </ul>
 
         <div class="quote">
-          “The most reliable CIAM platform we’ve ever used.”<br />
+          "The most reliable CIAM platform we've ever used."<br />
           <strong>— TechRadar, 2025</strong>
         </div>
 
@@ -110,10 +113,9 @@
         if (!window.LoginRadiusSDK) return console.error('SDK missing');
 
         const LR = new LoginRadiusSDK(COMMON_OPTIONS);
-        initFlow(LR, 'auth', 'login-container');          // login UI
+        initFlow(LR, 'auth', 'login-container');
         initFlow(LR, 'registration', 'register-container');
 
-        // Tab switching (only inside card)
         const tabSignIn = document.getElementById('tabSignIn');
         const tabSignUp = document.getElementById('tabSignUp');
         const loginDiv = document.getElementById('login-container');
@@ -128,7 +130,6 @@
           loginDiv.style.display = 'none'; regDiv.style.display = 'block';
         });
 
-        // Dark mode
         const toggle = document.getElementById('darkToggle');
         toggle.addEventListener('click', () => {
           const dark = document.documentElement.classList.toggle('dark');
