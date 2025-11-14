@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LoginRadius V3 – Sign In</title>
+    <link rel="stylesheet" href="dist/LoginRadiusV3.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header role="banner">
+      <div class="logo" aria-label="LoginRadius">LoginRadius</div>
+      <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+        Moon
+      </button>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="main-layout" role="main">
+      <!-- LEFT CARD – contains tabs & SDK -->
+      <section class="login-card" aria-labelledby="authHeading">
+        <h1 id="authHeading">Welcome back!</h1>
+
+        <!-- Tabs (only here) -->
+        <div class="card-tabs">
+          <button id="tabSignIn" class="active">Sign In</button>
+          <button id="tabSignUp">Sign Up</button>
+        </div>
+
+        <!-- SDK containers -->
+        <div id="login-container" class="sdk-container"></div>
+        <div
+          id="register-container"
+          class="sdk-container"
+          style="display:none;"
+        ></div>
+
+        <!-- Social & forgot -->
+        <div class="social-divider">── or continue with ──</div>
+        <div class="social-buttons">
+          <button class="social-btn google">Google</button>
+          <button class="social-btn apple">Apple</button>
+          <button class="social-btn github">GitHub</button>
+        </div>
+        <a href="forgot.html" class="forgot-link">Forgot password?</a>
+      </section>
+
+      <!-- RIGHT VALUE PROP -->
+      <section class="value-prop">
+        <h2>Secure Identity, Seamless Experience</h2>
+        <p>
+          Trusted by over 200,000 businesses for fast, phishing-resistant
+          authentication.
+        </p>
+
+        <ul class="stats">
+          <li>99.99% Uptime</li>
+          <li>SOC 2 Type II</li>
+          <li>AES-256 Encryption</li>
+          <li>2FA & Biometrics</li>
+        </ul>
+
+        <div class="quote">
+          “The most reliable CIAM platform we’ve ever used.”<br />
+          <strong>— TechRadar, 2025</strong>
+        </div>
+
+        <p>Join leading brands:</p>
+        <div class="logos">
+          <img
+            src="https://cdn.loginradius.com/logos/netflix.svg"
+            alt="Netflix"
+          />
+          <img
+            src="https://cdn.loginradius.com/logos/airbnb.svg"
+            alt="Airbnb"
+          />
+          <img src="https://cdn.loginradius.com/logos/slack.svg" alt="Slack" />
+          <img src="https://cdn.loginradius.com/logos/zoom.svg" alt="Zoom" />
+        </div>
+
+        <a href="#" class="cta-btn">Explore Features →</a>
+      </section>
+    </main>
+
+    <!-- Trust Signals -->
+    <section class="trust-signals" aria-label="Security guarantees">
+      <div class="signal">256-bit Encryption</div>
+      <div class="signal">SOC 2 Certified</div>
+      <div class="signal">99.99% Uptime</div>
+      <div class="signal">2FA Enabled</div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+      © 2025 LoginRadius Inc. All rights reserved.
+      <nav aria-label="Footer navigation">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Support</a>
+      </nav>
+    </footer>
+
+    <script src="dist/LoginRadiusV3.js"></script>
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!window.LoginRadiusSDK) return console.error('SDK missing');
+
+        const LR = new LoginRadiusSDK(COMMON_OPTIONS);
+        initFlow(LR, 'auth', 'login-container');          // login UI
+        initFlow(LR, 'registration', 'register-container');
+
+        // Tab switching (only inside card)
+        const tabSignIn = document.getElementById('tabSignIn');
+        const tabSignUp = document.getElementById('tabSignUp');
+        const loginDiv = document.getElementById('login-container');
+        const regDiv   = document.getElementById('register-container');
+
+        tabSignIn.addEventListener('click', () => {
+          tabSignUp.classList.remove('active'); tabSignIn.classList.add('active');
+          regDiv.style.display = 'none'; loginDiv.style.display = 'block';
+        });
+        tabSignUp.addEventListener('click', () => {
+          tabSignIn.classList.remove('active'); tabSignUp.classList.add('active');
+          loginDiv.style.display = 'none'; regDiv.style.display = 'block';
+        });
+
+        // Dark mode
+        const toggle = document.getElementById('darkToggle');
+        toggle.addEventListener('click', () => {
+          const dark = document.documentElement.classList.toggle('dark');
+          localStorage.setItem('darkMode', dark);
+          toggle.textContent = dark ? 'Sun' : 'Moon';
+        });
+        if (localStorage.getItem('darkMode') === 'true') document.documentElement.classList.add('dark');
+      });
+    </script>
+  </body>
+</html>

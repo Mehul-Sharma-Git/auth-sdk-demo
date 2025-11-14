@@ -1,0 +1,342 @@
+/* --------------------------------------------------------------
+   LoginRadius V3 – Production Demo
+   Modern, subtle, accessible, 10-year-experience feel
+   -------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg: #f9fafc;
+  --card-bg: #ffffff;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --primary: #4361ee; /* soft blue – easy on eyes */
+  --primary-hover: #3b56d5;
+  --border: #e5e7eb;
+  --shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.08);
+  --radius: 16px;
+  --transition: all 0.22s ease;
+  --success: #10b981;
+}
+.dark {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --primary: #3f37c9;
+  --primary-hover: #4361ee;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s;
+  color-scheme: light dark;
+}
+
+/* Header – sticky, minimal */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.logo {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--primary);
+}
+.dark-toggle {
+  background: none;
+  border: none;
+  font-size: 1.35rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.dark-toggle:hover {
+  transform: scale(1.12);
+}
+
+/* Main Layout – left card + right value */
+.main-layout {
+  flex: 1;
+  display: flex;
+  gap: 4rem;
+  padding: 3rem 2rem;
+  max-width: 1400px;
+  margin: auto;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  .main-layout {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+}
+
+/* LEFT CARD – the only place with tabs */
+.login-card {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+}
+.login-card:hover {
+  box-shadow: 0 16px 48px -8px rgba(0, 0, 0, 0.12);
+}
+.login-card h1 {
+  font-size: 1.875rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Tabs inside the card */
+.card-tabs {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.card-tabs button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.card-tabs button.active,
+.card-tabs button:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* SDK containers – SDK renders directly here */
+.sdk-container {
+  min-height: 180px;
+  position: relative;
+}
+
+/* Social & links */
+.social-divider {
+  margin: 1.5rem 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.social-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+.social-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.social-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.forgot-link {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.forgot-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* RIGHT VALUE PROP */
+.value-prop {
+  max-width: 500px;
+  width: 100%;
+}
+.value-prop h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+.value-prop p {
+  margin-bottom: 1.25rem;
+  color: var(--text-muted);
+}
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  list-style: none;
+}
+.stats li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.stats li::before {
+  content: "Checkmark";
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: 700;
+}
+.quote {
+  font-style: italic;
+  color: var(--text-muted);
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 4px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+.logos {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 1.5rem 0;
+}
+.logos img {
+  height: 38px;
+  filter: grayscale(100%);
+  transition: var(--transition);
+}
+.logos img:hover {
+  filter: grayscale(0);
+  transform: scale(1.08);
+}
+.cta-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+.cta-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Trust Signals */
+.trust-signals {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+.trust-signals .signal {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.trust-signals .signal::before {
+  content: "Checkmark";
+  position: absolute;
+  left: 0;
+  color: var(--success);
+}
+
+/* Footer */
+footer {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  background: var(--card-bg);
+}
+footer a {
+  color: var(--primary);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Skeleton */
+.skeleton-loading {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.skeleton-loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  100% {
+    left: 150%;
+  }
+}
+.skeleton-input,
+.skeleton-button {
+  height: 48px;
+  background: #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  animation: loading 1.5s infinite;
+}
+@keyframes loading {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}

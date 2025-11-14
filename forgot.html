@@ -1,0 +1,76 @@
+<!-- Example: forgot.html -->
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LoginRadius V3 – Fprgot Password</title>
+    <link rel="stylesheet" href="dist/LoginRadiusV3.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">LoginRadius</div>
+      <button class="dark-toggle" id="darkToggle">Moon</button>
+    </header>
+
+    <main class="main-layout">
+      <section class="login-card">
+        <h1>Forgot Password</h1>
+        <div id="main-container" class="sdk-container"></div>
+        <a href="index.html" class="forgot-link">← Back to Sign In</a>
+      </section>
+
+      <section class="value-prop">
+        <h2>Frictionless & Secure</h2>
+        <p>One-click magic links or biometric login – no passwords.</p>
+        <ul class="stats">
+          <li>99% Faster</li>
+          <li>Phishing-Proof</li>
+          <li>FIDO2 Ready</li>
+          <li>Custom Branding</li>
+        </ul>
+        <div class="quote">“The future of auth.” – Gartner</div>
+        <p>Used by:</p>
+        <div class="logos">
+          <img
+            src="https://cdn.loginradius.com/logos/microsoft.svg"
+            alt="Microsoft"
+          />
+          <img src="https://cdn.loginradius.com/logos/adobe.svg" alt="Adobe" />
+          <img
+            src="https://cdn.loginradius.com/logos/salesforce.svg"
+            alt="Salesforce"
+          />
+        </div>
+      </section>
+    </main>
+
+    <section class="trust-signals">
+      <div class="signal">FIDO2 Compliant</div>
+      <div class="signal">GDPR Ready</div>
+      <div class="signal">SOC 2 Type II</div>
+    </section>
+
+    <footer>…same as index.html…</footer>
+
+    <script src="dist/LoginRadiusV3.js"></script>
+    <script src="shared.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (!window.LoginRadiusSDK) return;
+        const LR = new LoginRadiusSDK(COMMON_OPTIONS);
+        checkAndTriggerFlow(LR, 'forgotPassword', 'main-container');
+
+        const t = document.getElementById('darkToggle');
+        t.addEventListener('click', () => {
+          const d = document.documentElement.classList.toggle('dark');
+          localStorage.setItem('darkMode', d);
+          t.textContent = d ? 'Sun' : 'Moon';
+        });
+        if (localStorage.getItem('darkMode') === 'true') document.documentElement.classList.add('dark');
+      });
+    </script>
+  </body>
+</html>
